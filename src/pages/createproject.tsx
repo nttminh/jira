@@ -1,17 +1,17 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
 import {
-	Box,
-	Button,
-	Container,
-	Paper,
-	Step,
-	StepContent,
-	StepLabel,
-	Stepper,
-	TextareaAutosize,
-	TextField,
-	Typography,
+  Box,
+  Button,
+  Container,
+  Paper,
+  Step,
+  StepContent,
+  StepLabel,
+  Stepper,
+  TextareaAutosize,
+  TextField,
+  Typography
 } from '@mui/material';
 import { useRouter } from 'next/router';
 import { ReactNode, useState } from 'react';
@@ -23,6 +23,11 @@ import { useProject } from '../context/project/project.context';
 import projectAPI from '../services/projectAPI';
 
 type Props = {};
+
+type formType = {
+		ProjectName: string;
+		Description: string;
+}
 
 const categories = [
 	{
@@ -86,7 +91,7 @@ const CreateProject = (props: Props) => {
 		handleSubmit,
 		getValues,
 		clearErrors,
-	} = useForm({ resolver: yupResolver(schema) });
+	} = useForm<formType>({ resolver: yupResolver(schema) });
 	const router = useRouter();
 	const {
 		projectState: { currentProject },
@@ -132,10 +137,7 @@ const CreateProject = (props: Props) => {
 		handleNext();
 	};
 
-	const onSubmit = async (form: {
-		ProjectName: string;
-		Description: string;
-	}) => {
+	const onSubmit = async (form: formType) => {
 		try {
 			setIsLoading(true);
 			const data = await projectAPI.createProject({
@@ -143,8 +145,8 @@ const CreateProject = (props: Props) => {
 				categoryId: category,
 				projectName: form.ProjectName,
 				description: form.Description,
-      });
-      projectDispatch({type: 'SET_PROJECT', payload: data.content})
+			});
+			projectDispatch({ type: 'SET_PROJECT', payload: data.content });
 
 			router.push('/');
 			console.log(data);
