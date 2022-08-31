@@ -9,24 +9,25 @@ export type authContextType = {
 		user: SignInContent | null;
 	};
 	authDispatch: Dispatch<any>;
-
 };
 
 const authContextDefaultValues: authContextType = {
-  authState: {
-    isAuthenticated: isBrowser && !!localStorage.getItem("access_token"),
-    token: isBrowser ? localStorage.getItem("access_token") || "" : "",
-    user: isBrowser ? JSON.parse(localStorage.getItem("user") || "null") : "",
-  },
-  authDispatch: () => {},
+	authState: {
+		isAuthenticated: isBrowser && !!localStorage.getItem('access_token'),
+		token: isBrowser ? localStorage.getItem('access_token') || '' : '',
+		user: isBrowser
+			? JSON.parse(localStorage.getItem('user') || 'null')
+			: '',
+	},
+	authDispatch: () => {},
 };
 
 export const AuthContext = createContext(authContextDefaultValues);
 
 export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (context === undefined) {
-    throw new Error("useAuth must be used within a AuthProvider");
-  }
-  return context;
+	const context = useContext(AuthContext);
+	if (context === undefined) {
+		throw new Error('useAuth must be used within a AuthProvider');
+	}
+	return context;
 };
