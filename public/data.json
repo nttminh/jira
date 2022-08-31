@@ -1,0 +1,52 @@
+{
+  "tasks": [
+    {
+      "listUserAsign": ["MINH", "TIN"],
+      "taskName": "TaskName D",
+      "description": "description",
+      "statusId": "statusId",
+      "originalEstimate": 2,
+      "timeTrackingSpent": 2,
+      "timeTrackingRemaining": 1,
+      "projectId": 2,
+      "typeId": 1,
+      "priorityId": 1
+    },
+    {
+      "listUserAsign": ["MINH", "TIN"],
+      "taskName": "TaskName C",
+      "description": "description",
+      "statusId": "statusId",
+      "originalEstimate": 1,
+      "timeTrackingSpent": 2,
+      "timeTrackingRemaining": 1,
+      "projectId": 2,
+      "typeId": 1,
+      "priorityId": 2
+    },
+    {
+      "listUserAsign": ["MINH", "TIN"],
+      "taskName": "TaskName B",
+      "description": "description",
+      "statusId": "statusId",
+      "originalEstimate": 5,
+      "timeTrackingSpent": 2,
+      "timeTrackingRemaining": 1,
+      "projectId": 2,
+      "typeId": 1,
+      "priorityId": 1
+    },
+    {
+      "listUserAsign": ["MINH", "TIN"],
+      "taskName": "TaskName A",
+      "description": "description",
+      "statusId": "statusId",
+      "originalEstimate": 3,
+      "timeTrackingSpent": 2,
+      "timeTrackingRemaining": 1,
+      "projectId": 2,
+      "typeId": 1,
+      "priorityId": 3
+    }
+  ]
+}
