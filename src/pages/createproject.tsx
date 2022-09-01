@@ -1,17 +1,17 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
 import {
-  Box,
-  Button,
-  Container,
-  Paper,
-  Step,
-  StepContent,
-  StepLabel,
-  Stepper,
-  TextareaAutosize,
-  TextField,
-  Typography
+	Box,
+	Button,
+	Container,
+	Paper,
+	Step,
+	StepContent,
+	StepLabel,
+	Stepper,
+	TextareaAutosize,
+	TextField,
+	Typography,
 } from '@mui/material';
 import { useRouter } from 'next/router';
 import { ReactNode, useState } from 'react';
@@ -25,9 +25,9 @@ import projectAPI from '../services/projectAPI';
 type Props = {};
 
 type formType = {
-		ProjectName: string;
-		Description: string;
-}
+	ProjectName: string;
+	Description: string;
+};
 
 const categories = [
 	{
@@ -146,6 +146,7 @@ const CreateProject = (props: Props) => {
 				projectName: form.ProjectName,
 				description: form.Description,
 			});
+			console.log(data);
 			projectDispatch({ type: 'SET_PROJECT', payload: data.content });
 
 			router.push('/');
