@@ -4,7 +4,6 @@ import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Router from 'next/router';
-import * as React from 'react';
 type Props = {};
 
 const pages = [
@@ -15,12 +14,6 @@ const pages = [
 
 const ProfileMenuSide = (props: Props) => {
 	const router = Router;
-	const handleListItemClick = (
-		event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-		index: number
-	) => {
-		setSelectedIndex(index);
-	};
 
 	console.log(router);
 	return (
