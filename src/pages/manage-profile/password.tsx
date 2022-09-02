@@ -37,7 +37,7 @@ const Password = (props: Props) => {
 		setPassword(event.target.value);
 	};
 	return (
-		<Box sx={{ maxWidth: 584 }}>
+		<Box sx={{ maxWidth: 584, px: 2 }}>
 			<Box mb={2}>
 				<Typography variant="h5" sx={{ fontWeight: 500 }} mb={2}>
 					Security

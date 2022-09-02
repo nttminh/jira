@@ -62,7 +62,7 @@ const AvatarButton = (props: Props) => {
 					<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
 						<Avatar
 							sx={{ width: 30, height: 30 }}
-							src={user?.avatar}
+							src={`https://ui-avatars.com/api/?name=${user?.name}&bold=true&background=DE350B&color=fff`}
 							alt={user?.email || 'Avatar'}
 						>
 							<PersonRoundedIcon />
@@ -95,7 +95,7 @@ const AvatarButton = (props: Props) => {
 					</Typography>
 					<Box display="flex" mt={2}>
 						<Avatar
-							src={user?.avatar}
+							src={`https://ui-avatars.com/api/?name=${user?.name}&bold=true&background=DE350B&color=fff`}
 							alt={user?.email || 'Avatar'}
 						>
 							<PersonRoundedIcon />

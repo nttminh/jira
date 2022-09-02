@@ -47,6 +47,23 @@ function reducer(
 				user: { ...action.payload },
 			};
 		}
+		case 'UPDATE_USER_NAME': {
+			let userFromLocalStorage = JSON.parse(
+				localStorage.getItem('user') || 'null'
+			);
+			userFromLocalStorage = {
+				...userFromLocalStorage,
+				name: action.payload,
+			};
+			localStorage.setItem('user', JSON.stringify(userFromLocalStorage));
+
+			return {
+				...state,
+				user: {
+					...userFromLocalStorage,
+				},
+			};
+		}
 		default:
 			return state;
 	}
