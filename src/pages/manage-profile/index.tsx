@@ -31,6 +31,10 @@ import userAPI from '../../services/userAPI';
 
 type Props = {};
 
+type FormTypes = {
+	Name: string;
+};
+
 const ManageProfile = (props: Props) => {
 	const {
 		authState: { user },
@@ -62,12 +66,12 @@ const ManageProfile = (props: Props) => {
 		handleSubmit,
 		watch,
 		resetField,
-	} = useForm({
+	} = useForm<FormTypes>({
 		resolver: yupResolver(schema),
 		defaultValues: { Name: user?.name },
 	});
 
-	const onSubmit = async ({ Name }: { Name: string }) => {
+	const onSubmit = async ({ Name }: FormTypes) => {
 		try {
 			setIsLoading(true);
 			const newUser = {
