@@ -131,9 +131,11 @@ const AvatarButton = (props: Props) => {
 					UPGRADE
 				</Typography>
 				<MenuItem>
-					<ListItemText disableTypography>
-						Try the Standard plan
-					</ListItemText>
+					<Link href="https://www.atlassian.com/software/jira/pricing">
+						<ListItemText disableTypography>
+							Try the Standard plan
+						</ListItemText>
+					</Link>
 					<Typography
 						color="HighlightText"
 						sx={{
