@@ -8,7 +8,8 @@ import HelpIcon from '@mui/icons-material/Help';
 import { useRouter } from 'next/router';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import TriangleLogo from '../components/icons/triangleLogo';
+
+import TriangleLogo from '../components/icons/TriangleLogo';
 import Footer from './Footer';
 import Header from './Header';
 import ProfileMenuSide from './MenuSide/ProfileMenuSide';
