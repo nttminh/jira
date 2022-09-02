@@ -82,7 +82,10 @@ const ManageProfile = (props: Props) => {
 			});
 			if (data.statusCode === 200) {
 				toast.success('Change name successfully');
-				authDispatch({ type: 'UPDATE_USER_NAME', payload: Name });
+				authDispatch({
+					type: 'UPDATE_USER',
+					payload: { property: 'name', value: Name },
+				});
 			} else {
 				toast.warning('Change name failed');
 			}

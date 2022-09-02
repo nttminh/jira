@@ -60,7 +60,7 @@ const Password = (props: Props) => {
 					name="Password"
 					defaultValue=""
 					control={control}
-					render={({ field }) => (
+					render={({ field: any }) => (
 						<TextField
 							error={!!errors?.Password}
 							label="Enter current password"

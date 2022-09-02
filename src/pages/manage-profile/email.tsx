@@ -1,29 +1,70 @@
+import { yupResolver } from '@hookform/resolvers/yup';
+import { LoadingButton } from '@mui/lab';
 import {
 	Alert,
 	AlertTitle,
 	Box,
-	Button,
 	InputLabel,
 	TextField,
 	Typography,
 } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import * as yup from 'yup';
 import ProfileLayout from '../../containers/ProfileLayout';
 import { useAuth } from '../../context/auth/auth.context';
+import userAPI from '../../services/userAPI';
 
 type Props = {};
 
 const Email = (props: Props) => {
 	const {
 		authState: { user },
+		authDispatch,
 	} = useAuth();
-	const [name, setName] = React.useState('');
+	const [isLoading, setIsLoading] = useState(false);
+	const schema = yup
+		.object({
+			email: yup.string().email().required(),
+		})
+		.required();
 
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setName(event.target.value);
+	const {
+		register,
+		control,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<{ email: string }>({ resolver: yupResolver(schema) });
+
+	const onSubmit = async ({ email }: { email: string }) => {
+		try {
+			setIsLoading(true);
+			const newUser = {
+				...user!,
+				email: email,
+			};
+			const data = await userAPI.editUser({
+				...newUser,
+			});
+			if (data.statusCode === 200) {
+				toast.success('Change email successfully');
+				authDispatch({
+					type: 'UPDATE_USER',
+					payload: { property: 'email', value: email },
+				});
+			} else {
+				toast.warning('Change email failed');
+			}
+		} catch (error: any) {
+			toast.warning(error);
+		} finally {
+			setIsLoading(false);
+		}
 	};
+
 	return (
 		<Box sx={{ maxWidth: 584, px: 2 }}>
 			<Box mb={2}>
@@ -64,17 +105,24 @@ const Email = (props: Props) => {
 					New email address
 				</InputLabel>
 				<TextField
+					required
 					id="component-outlined"
-					value={name}
-					onChange={handleChange}
 					size="small"
 					fullWidth
+					{...register('email')}
+					error={!!errors.email}
+					helperText={errors?.email?.message}
 					placeholder="Enter new email address"
 					sx={{ mb: 2 }}
 				/>
-				<Button variant="contained" size="small">
+				<LoadingButton
+					loading={isLoading}
+					variant="contained"
+					size="small"
+					onClick={handleSubmit(onSubmit)}
+				>
 					Save changes
-				</Button>
+				</LoadingButton>
 			</Box>
 			<Box mt={2}>
 				<InputLabel

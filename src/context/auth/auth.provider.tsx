@@ -40,28 +40,32 @@ function reducer(
 			};
 		}
 		case 'UPDATE_USER': {
+			if (action.payload.property) {
+				let userFromLocalStorage = JSON.parse(
+					localStorage.getItem('user') || 'null'
+				);
+				userFromLocalStorage = {
+					...userFromLocalStorage,
+					[action.payload.property]: action.payload.value,
+				};
+				localStorage.setItem(
+					'user',
+					JSON.stringify(userFromLocalStorage)
+				);
+
+				return {
+					...state,
+					user: {
+						...userFromLocalStorage,
+					},
+				};
+			}
+
 			localStorage.setItem('user', JSON.stringify(action.payload));
 
 			return {
 				...state,
 				user: { ...action.payload },
-			};
-		}
-		case 'UPDATE_USER_NAME': {
-			let userFromLocalStorage = JSON.parse(
-				localStorage.getItem('user') || 'null'
-			);
-			userFromLocalStorage = {
-				...userFromLocalStorage,
-				name: action.payload,
-			};
-			localStorage.setItem('user', JSON.stringify(userFromLocalStorage));
-
-			return {
-				...state,
-				user: {
-					...userFromLocalStorage,
-				},
 			};
 		}
 		default:
