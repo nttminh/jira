@@ -71,14 +71,14 @@ const ManageProfile = (props: Props) => {
 		try {
 			setIsLoading(true);
 			const newUser = {
-				id: user!.id.toString(),
+				id: user!.id,
 				email: user!.email,
-				name: Name,
 				phoneNumber: user!.phoneNumber,
+				passWord: user!.passWord,
+				name: Name,
 			};
 			const data = await userAPI.editUser({
 				...newUser,
-				passWord: '123456',
 			});
 			if (data.statusCode === 200) {
 				toast.success('Change name successfully');
@@ -122,7 +122,7 @@ const ManageProfile = (props: Props) => {
 						component="img"
 						height="140"
 						image="https://ptc-directory-sited-static.us-east-1.prod.public.atl-paas.net/gradients/1.svg"
-						alt="green iguana"
+						alt="linear gradient from red to white"
 					/>
 					<CardContent>
 						<Box mt={-11}>

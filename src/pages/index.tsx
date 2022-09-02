@@ -4,9 +4,6 @@ import { useAuth } from '../context/auth/auth.context';
 import { NextPageWithLayout } from './_app';
 
 const Home: NextPageWithLayout = () => {
-	const { authState, authDispatch } = useAuth();
-	const { isAuthenticated, token, user } = authState;
-	const router = useRouter();
 
 	return (
 		<div>

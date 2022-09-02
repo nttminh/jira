@@ -1,12 +1,12 @@
 import { createContext, Dispatch, useContext } from 'react';
-import { SignInContent } from '../../interface/userAuthentication';
+import { User } from '../../interface/User';
 const isBrowser = typeof window !== 'undefined';
 
 export type authContextType = {
 	authState: {
 		isAuthenticated: boolean;
 		token: string;
-		user: SignInContent | null;
+		user: User | null;
 	};
 	authDispatch: Dispatch<any>;
 };
