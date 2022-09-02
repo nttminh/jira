@@ -69,7 +69,6 @@ const Password = (props: Props) => {
 							type="text"
 							fullWidth
 							sx={{ mb: 4 }}
-							{...field}
 						/>
 					)}
 				/>

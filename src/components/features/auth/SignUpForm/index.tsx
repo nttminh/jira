@@ -71,15 +71,18 @@ export default function SignUpForm({ setPageType }: Props) {
 			const data = await userAPI.register({
 				email: Email,
 				name: Name,
-				password: Password,
+				passWord: Password,
 				phoneNumber: PhoneNumber,
 			});
 			if (data.statusCode === 200) {
-				const { email, password } = data.content;
-				const user = await userAPI.signIn({ email, password });
+				const { email, passWord: password } = data.content;
+				const user = await userAPI.signIn({
+					email,
+					passWord: password,
+				});
 				authDispatch({
 					type: 'UPDATE_USER',
-					payload: {...user.content, passWord: password},
+					payload: { ...user.content, passWord: password },
 				});
 				authDispatch({
 					type: 'STORE_TOKEN',
