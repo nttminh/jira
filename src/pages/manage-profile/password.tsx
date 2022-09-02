@@ -50,7 +50,7 @@ const Password = (props: Props) => {
 		control,
 		handleSubmit,
 		register,
-	} = useForm({ resolver: yupResolver(schema) });
+	} = useForm<FormTypes>({ resolver: yupResolver(schema) });
 
 	const [isLoading, setIsLoading] = useState(false);
 	const onSubmit = async ({ NewPassword }: FormTypes) => {
