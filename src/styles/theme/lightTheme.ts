@@ -1,4 +1,4 @@
-import { createTheme, ThemeOptions } from "@mui/material/styles";
+import { createTheme, ThemeOptions } from '@mui/material/styles';
 
 const lightThemeOptions: ThemeOptions = {
 	palette: {
@@ -17,6 +17,17 @@ const lightThemeOptions: ThemeOptions = {
 			styleOverrides: {
 				root: {
 					fontSize: '14px',
+				},
+			},
+		},
+		MuiListItemButton: {
+			styleOverrides: {
+				root: {
+					'&.Mui-selected': {
+						color: '#0052cc',
+						backgroundColor: '#091e420a',
+						borderRadius: '3px',
+					},
 				},
 			},
 		},

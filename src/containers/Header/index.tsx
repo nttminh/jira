@@ -21,7 +21,6 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import * as React from 'react';
 import logoIconSVG from '../../../public/logoIcon.svg';
-import { useAuth } from '../../context/auth/auth.context';
 import AvatarButton from './components/AvatarButton';
 import Search from './components/Search';
 import SearchIconWrapper from './components/SearchIconWrapper';
@@ -29,10 +28,6 @@ import StyledInputBase from './components/StyledInputBase';
 
 const Header = () => {
 	const router = useRouter();
-	const {
-		authState: { isAuthenticated, user },
-		authDispatch,
-	} = useAuth();
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const [isOpen, setIsOpen] = React.useState(false);
 

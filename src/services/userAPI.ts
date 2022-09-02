@@ -1,4 +1,5 @@
 import { Response } from '../interface/Response';
+import { User } from '../interface/User';
 import {
 	SignInContent,
 	SignUpContent,
@@ -18,6 +19,9 @@ const userAPI = {
 			'Users/signin',
 			loginInfo
 		);
+	},
+	editUser: (newUser: User) => {
+		return axiosClient.put<Response<string>>('Users/editUser', newUser);
 	},
 	validateToken: (token: string) => {
 		return axiosClient.post<string>('Users/TestToken', {

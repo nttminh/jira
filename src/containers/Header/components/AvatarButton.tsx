@@ -8,6 +8,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
@@ -27,13 +28,13 @@ const AvatarButton = (props: Props) => {
 		{
 			label: 'Profile',
 			event: () => {
-				router.push('/account');
+				router.push('/manage-profile');
 			},
 		},
 		{
-			label: 'Personal Settings',
+			label: 'Change password',
 			event: () => {
-				router.push('/account');
+				router.push('/manage-profile/password');
 			},
 		},
 		{
@@ -61,7 +62,7 @@ const AvatarButton = (props: Props) => {
 					<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
 						<Avatar
 							sx={{ width: 30, height: 30 }}
-							src={user?.avatar}
+							src={`https://ui-avatars.com/api/?name=${user?.name}&bold=true&background=DE350B&color=fff`}
 							alt={user?.email || 'Avatar'}
 						>
 							<PersonRoundedIcon />
@@ -94,7 +95,7 @@ const AvatarButton = (props: Props) => {
 					</Typography>
 					<Box display="flex" mt={2}>
 						<Avatar
-							src={user?.avatar}
+							src={`https://ui-avatars.com/api/?name=${user?.name}&bold=true&background=DE350B&color=fff`}
 							alt={user?.email || 'Avatar'}
 						>
 							<PersonRoundedIcon />
@@ -109,14 +110,16 @@ const AvatarButton = (props: Props) => {
 						</Box>
 					</Box>
 				</Box>
-				<MenuItem>
-					<ListItemText disableTypography>
-						Manage Account
-					</ListItemText>
-					<ListItemIcon>
-						<LaunchIcon />
-					</ListItemIcon>
-				</MenuItem>
+				<Link href="/manage-profile">
+					<MenuItem>
+						<ListItemText disableTypography>
+							Manage Account
+						</ListItemText>
+						<ListItemIcon>
+							<LaunchIcon />
+						</ListItemIcon>
+					</MenuItem>
+				</Link>
 
 				<Divider />
 				<Typography
@@ -128,9 +131,11 @@ const AvatarButton = (props: Props) => {
 					UPGRADE
 				</Typography>
 				<MenuItem>
-					<ListItemText disableTypography>
-						Try the Standard plan
-					</ListItemText>
+					<Link href="https://www.atlassian.com/software/jira/pricing">
+						<ListItemText disableTypography>
+							Try the Standard plan
+						</ListItemText>
+					</Link>
 					<Typography
 						color="HighlightText"
 						sx={{

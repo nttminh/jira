@@ -20,24 +20,6 @@ const HeaderOnlyLayout = ({ children }: { children: React.ReactNode }) => {
 
 	const [loading, setLoading] = useState(false);
 
-	useEffect(() => {
-		// const getUser = async () => {
-		// 	setLoading(true);
-		// 	if (isAuthenticated && !user) {
-		// 		const res = await getUserClient().getUserInfo();
-		// 		if (res?.success) {
-		// 			const userInfo = res.data;
-		// 			authDispatch({
-		// 				type: 'UPDATE_USER',
-		// 				payload: userInfo,
-		// 			});
-		// 		}
-		// 	}
-		// 	setLoading(false);
-		// };
-		// getUser();
-	}, []);
-
 	return (
 		<div
 			style={{
