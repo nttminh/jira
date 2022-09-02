@@ -1,8 +1,8 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import { LoadingButton } from '@mui/lab';
 import {
 	Box,
-	Button,
 	InputAdornment,
 	InputLabel,
 	TextField,
@@ -10,31 +10,73 @@ import {
 } from '@mui/material';
 import Link from 'next/link';
 import { ReactNode, useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import * as yup from 'yup';
 import ProfileLayout from '../../containers/ProfileLayout';
+import { useAuth } from '../../context/auth/auth.context';
+import userAPI from '../../services/userAPI';
 
 type Props = {};
 
+type FormTypes = {
+	Password: string;
+	NewPassword: string;
+};
+
 const Password = (props: Props) => {
+	const {
+		authState: { user },
+		authDispatch,
+	} = useAuth();
 	const schema = yup
 		.object({
-			Password: yup.string().required(),
-			ConfirmedPassword: yup
+			Password: yup
 				.string()
-				.oneOf([yup.ref('Password'), null], 'Password is not the same'),
+				.required()
+				.oneOf([user?.passWord], 'Incorrect current password'),
+			NewPassword: yup
+				.string()
+				.required()
+				.min(6)
+				.notOneOf(
+					[yup.ref('Password'), null],
+					'Cannot be the same as current password'
+				),
 		})
 		.required();
 	const {
 		formState: { errors },
 		control,
 		handleSubmit,
+		register,
 	} = useForm({ resolver: yupResolver(schema) });
-	const [password, setPassword] = useState('');
-	const handleChangePassword = (
-		event: React.ChangeEvent<HTMLInputElement>
-	) => {
-		setPassword(event.target.value);
+
+	const [isLoading, setIsLoading] = useState(false);
+	const onSubmit = async ({ NewPassword }: FormTypes) => {
+		try {
+			setIsLoading(true);
+			const newUser = {
+				...user!,
+				passWord: NewPassword,
+			};
+			const data = await userAPI.editUser({
+				...newUser,
+			});
+			if (data.statusCode === 200) {
+				toast.success('Change password successfully');
+				authDispatch({
+					type: 'UPDATE_USER',
+					payload: { property: 'passWord', value: NewPassword },
+				});
+			} else {
+				toast.warning('Change password failed');
+			}
+		} catch (error: any) {
+			toast.warning(error);
+		} finally {
+			setIsLoading(false);
+		}
 	};
 	return (
 		<Box sx={{ maxWidth: 584, px: 2 }}>
@@ -56,22 +98,25 @@ const Password = (props: Props) => {
 					Current password
 				</InputLabel>
 
-				<Controller
-					name="Password"
-					defaultValue=""
-					control={control}
-					render={({ field: any }) => (
-						<TextField
-							error={!!errors?.Password}
-							label="Enter current password"
-							helperText={errors?.Password?.message as ReactNode}
-							variant="standard"
-							type="text"
-							fullWidth
-							sx={{ mb: 4 }}
-						/>
-					)}
+				<TextField
+					required
+					error={!!errors?.Password}
+					label="Enter current password"
+					helperText={errors?.Password?.message as ReactNode}
+					variant="standard"
+					fullWidth
+					sx={{ mb: 4 }}
+					{...register('Password')}
+					type="password"
+					InputProps={{
+						endAdornment: (
+							<InputAdornment position="end">
+								<VisibilityIcon />
+							</InputAdornment>
+						),
+					}}
 				/>
+
 				<InputLabel
 					htmlFor="component-outlined"
 					sx={{ pt: 1, fontSize: 12, fontWeight: 600 }}
@@ -80,12 +125,13 @@ const Password = (props: Props) => {
 				</InputLabel>
 				<TextField
 					label="Enter new password"
-					id="outlined-start-adornment"
-					value={password}
-					onChange={handleChangePassword}
 					fullWidth
 					required
+					type="password"
 					variant="standard"
+					error={!!errors.NewPassword}
+					helperText={errors?.NewPassword?.message as ReactNode}
+					{...register('NewPassword')}
 					InputProps={{
 						endAdornment: (
 							<InputAdornment position="end">
@@ -95,9 +141,14 @@ const Password = (props: Props) => {
 					}}
 					sx={{ mb: 2 }}
 				/>
-				<Button variant="contained" size="small">
+				<LoadingButton
+					loading={isLoading}
+					variant="contained"
+					size="small"
+					onClick={handleSubmit(onSubmit)}
+				>
 					Save changes
-				</Button>
+				</LoadingButton>
 			</Box>
 			<Box mt={2}>
 				<InputLabel

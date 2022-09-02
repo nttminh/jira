@@ -111,7 +111,7 @@ const Email = (props: Props) => {
 					fullWidth
 					{...register('email')}
 					error={!!errors.email}
-					helperText={errors?.email?.message}
+					helperText={errors?.email?.message as ReactNode}
 					placeholder="Enter new email address"
 					sx={{ mb: 2 }}
 				/>
