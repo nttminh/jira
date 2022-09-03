@@ -5,12 +5,13 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import Modal from "@mui/material/Modal";
+
 import TopicLabel from "../../TaskCard/TopicLabel/TopicLabel";
 import Point from "../../TaskCard/Point/Point";
 import Priority from "../../TaskCard/Priority/Priority";
 import Assignee from "../../TaskCard/Assignee/Assignee";
 import { Task } from "../../../interface/Task";
-import Modal from "@mui/material/Modal";
 
 type Props = {
   value: Task;

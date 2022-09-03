@@ -29,7 +29,6 @@ const style = {
 
 const TaskCard = (props: Props) => {
   const [opened, setOpened] = useState(false);
-  console.log("prio", props.value.priorityId);
   return (
     <Box
       sx={{ minWidth: 275 }}
@@ -63,7 +62,6 @@ const TaskCard = (props: Props) => {
           tắt nên tạm thời refresh lại nha huhu
           <Button
             onClick={() => {
-              console.log("clic");
               setOpened(false);
             }}
           >

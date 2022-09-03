@@ -2,7 +2,7 @@ import axios from "./index";
 import { PROJECT_URI } from "../constants/api";
 import { Project } from "../interface/Project";
 
-class AuthClient {
+class Projects {
   createProject(formData: Project) {
     return axios
       .post(`${PROJECT_URI}/createProject`, { ...formData })
@@ -36,9 +36,9 @@ class AuthClient {
       });
   }
 
-  getAllProject(keyword: string) {
+  getAllProject() {
     return axios
-      .get(`${PROJECT_URI}/getAllProject/${keyword}`)
+      .get(`${PROJECT_URI}/getAllProject`)
       .then((response) => {
         return response;
       })
@@ -204,6 +204,6 @@ class AuthClient {
   }
 }
 
-export function getAuthClient() {
-  return new AuthClient();
+export function getProject() {
+  return new Projects();
 }
