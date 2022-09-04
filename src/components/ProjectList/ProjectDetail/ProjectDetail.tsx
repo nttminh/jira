@@ -9,7 +9,7 @@ import Modal from "@mui/material/Modal";
 import { GetProjectDetailContent } from "../../../interface/Project";
 
 type Props = {
-  project: GetProjectDetailContent;
+  project: GetProjectDetailContent | undefined;
 };
 
 const ProjectDetail = (props: Props) => {
