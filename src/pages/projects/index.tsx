@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { getProject } from "../api/getProject";
+import { getProject } from "../../api/getProject";
 import { GetServerSideProps } from "next";
 import { InferGetServerSidePropsType } from "next";
-import ProjectList from "../components/ProjectList/ProjectList";
+import ProjectList from "../../components/ProjectList/ProjectList";
 
 type Props = {};
 

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
 import CardActions from "@mui/material/CardActions";
@@ -10,42 +11,30 @@ import { GetProjectDetailContent } from "../../../interface/Project";
 
 type Props = {
   project: GetProjectDetailContent;
+  id: number;
 };
 
 const ProjectItem = (props: Props) => {
   const [opened, setOpened] = useState(false);
   const project = props.project;
   return (
-    <Box className="my-2 w-100" onClick={() => setOpened(true)}>
-      <Card variant="outlined">
-        <div className="flex flex-row justify-between items-center px-5">
-          <span className="block w-1/4">{project?.projectName}</span>
-          <span className="block w-1/4">{project?.description}</span>
-          <span className="block w-1/4">{project?.id}</span>
-          <span className="block w-1/4">{project?.alias}</span>
-        </div>
-      </Card>
-      <Modal
-        open={opened}
-        onClose={() => setOpened(false)}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+    <Link href={`projects/${props.id}`}>
+      <Box
+        className="my-2 w-100 cursor-pointer"
+        onClick={() => {
+          setOpened(true);
+        }}
       >
-        <Box>
-          <span className="block w-1/4">{project?.projectName}</span>
-          <span className="block w-1/4">{project?.description}</span>
-          <span className="block w-1/4">{project?.id}</span>
-          <span className="block w-1/4">{project?.alias}</span>
-          <Button
-            onClick={() => {
-              setOpened(false);
-            }}
-          >
-            X
-          </Button>
-        </Box>
-      </Modal>
-    </Box>
+        <Card variant="outlined">
+          <div className="flex flex-row justify-between items-center px-5 h-12">
+            <span className="block w-1/4">{project?.id}</span>
+            <span className="block w-1/4">{project?.projectName}</span>
+            <span className="block w-1/4">{project?.alias}</span>
+            <span className="block w-1/4">{project?.description}</span>
+          </div>
+        </Card>
+      </Box>
+    </Link>
   );
 };
 

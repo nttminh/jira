@@ -4,6 +4,7 @@ import ProjectItem from "../../components/ProjectList/ProjectItem/ProjectItem";
 import { getProject } from "../../api/getProject";
 import { GetProjectDetailContent } from "../../interface/Project";
 import { useRouter } from "next/router";
+import ProjectDetail from "../../components/ProjectList/ProjectDetail/ProjectDetail";
 type Props = {};
 
 const Project = (props: Props) => {
@@ -30,7 +31,7 @@ const Project = (props: Props) => {
     getProjects();
   }, []);
 
-  return <ProjectItem project={project} />;
+  return <ProjectDetail project={project} />;
 };
 
 export default Project;
