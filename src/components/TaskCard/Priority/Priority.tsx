@@ -25,7 +25,6 @@ const Priority = (props: Props) => {
       break;
     }
   }
-  console.log("icom", icon);
   return <div className="p-2 inline-block rounded-xl">{icon}</div>;
 };
 

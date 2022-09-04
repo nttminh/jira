@@ -8,7 +8,7 @@ type Props = {
 const TaskList = (props: Props) => {
   return (
     <div>
-      {props.list.map((task) => (
+      {props?.list?.map((task) => (
         <TaskItem key={task.taskName} value={task} />
       ))}
     </div>
