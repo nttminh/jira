@@ -19,7 +19,7 @@ export default class MyDocument extends Document {
 					/>
 					<meta
 						property="og:image"
-						content="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Jira_%28Software%29_logo.svg/2880px-Jira_%28Software%29_logo.svg.png"
+						content="https://railsware.com/blog/wp-content/uploads/2018/01/team-productivity-1200x630-2x.png"
 					/>
 				</Head>
 				<body>
