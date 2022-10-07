@@ -19,6 +19,7 @@ const ProjectList = (props: Props) => {
             <span className="block w-1/4">Project Name</span>
             <span className="block w-1/4">Alias</span>
             <span className="block w-1/4">Description</span>
+           
           </div>
         </Card>
       </Box>

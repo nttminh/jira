@@ -27,7 +27,7 @@ class Projects {
 
   getProjectDetail(id: number) {
     return axios
-      .get(`${PROJECT_URI}/etProjectDetail/${id}`)
+      .get(`${PROJECT_URI}/getProjectDetail?id=${id}`)
       .then((response) => {
         return response;
       })

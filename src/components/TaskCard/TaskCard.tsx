@@ -9,7 +9,7 @@ import TopicLabel from "./TopicLabel/TopicLabel";
 import Point from "./Point/Point";
 import Priority from "./Priority/Priority";
 import Assignee from "./Assignee/Assignee";
-import { Task } from "../../interface/Task";
+import { LstTask } from "../../interface/Project";
 import Modal from "@mui/material/Modal";
 
 type Props = {
@@ -28,6 +28,8 @@ const style = {
 };
 
 const TaskCard = (props: Props) => {
+  console.log('===', props);
+  const task = props?.lstTaskDeTail;
   const [opened, setOpened] = useState(false);
   return (
     <Box
@@ -36,11 +38,11 @@ const TaskCard = (props: Props) => {
       onClick={() => setOpened(true)}
     >
       <Card variant="outlined" className="p-5">
-        <p>{props.value.taskName}</p>
+        <p>{task.alias}</p>
         <TopicLabel value="Topic Label" color="yellow" />
         <div className="flex flex-row justify-between items-center mt-5">
-          <Point value={props.value.originalEstimate} />
-          <Priority level={props.value.priorityId} />
+          <Point value={task.originalEstimate} />
+          <Priority level={task.priorityId} />
           <Assignee />
         </div>
       </Card>
