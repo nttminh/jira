@@ -47,9 +47,9 @@ class Projects {
       });
   }
 
-  deleteProject(projectId: number, formData: Project) {
+  deleteProject(projectId: number) {
     return axios
-      .delete(`${PROJECT_URI}/deleteProject/${projectId}`)
+      .delete(`${PROJECT_URI}/deleteProject?projectId=${projectId}`)
       .then((response) => {
         return response;
       })

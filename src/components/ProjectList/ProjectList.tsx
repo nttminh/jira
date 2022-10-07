@@ -3,13 +3,18 @@ import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
 import ProjectItem from "./ProjectItem/ProjectItem";
 import { GetProjectDetailContent } from "../../interface/Project";
+
 type Props = {
   list: GetProjectDetailContent[];
   title?: string;
   projectName: string;
 };
 
+
+
+
 const ProjectList = (props: Props) => {
+
   return (
     <div className="my-8">
       <Box className="my-2 w-100 cursor-pointer ">
@@ -19,7 +24,6 @@ const ProjectList = (props: Props) => {
             <span className="block w-1/4">Project Name</span>
             <span className="block w-1/4">Alias</span>
             <span className="block w-1/4">Description</span>
-           
           </div>
         </Card>
       </Box>

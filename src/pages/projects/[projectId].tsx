@@ -7,12 +7,17 @@ import { useRouter } from "next/router";
 import ProjectDetail from "../../components/ProjectList/ProjectDetail/ProjectDetail";
 type Props = {};
 
+
+
+
 const Project = (props: Props) => {
   const [project, setProject] = useState<GetProjectDetailContent>();
   const router = useRouter();
   const queryParams = router.query;
   const projectId = queryParams.projectId || 0;
   console.log(projectId);
+
+  
 
   const getProjects = async () => {
     try {
@@ -30,6 +35,8 @@ const Project = (props: Props) => {
   useEffect(() => {
     getProjects();
   }, []);
+
+
 
   return <ProjectDetail project={project} />;
 };
