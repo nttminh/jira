@@ -5,6 +5,7 @@ import { GetProjectDetailContent } from "../interface/Project";
 
 import { getProject } from "../api/getProject";
 import { useEffect, useState } from "react";
+import UserList from "../components/User/UserList";
 
 type Props = {};
 
@@ -57,6 +58,8 @@ const Active = (props: Props) => {
         <Column title="TESTING" list={filteredTasks[3]} />
         <Column title="DONE" list={filteredTasks[4]} />
       </div>
+      TEAM MEMBERS
+      <UserList id={prjId} />
     </div>
   );
 };

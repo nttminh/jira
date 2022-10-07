@@ -3,13 +3,14 @@ import Card from "@mui/material/Card";
 import { useRouter } from "next/router";
 import Box from "@mui/material/Box";
 import { getProject } from "../../../api/getProject";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 
 import { GetProjectDetailContent } from "../../../interface/Project";
 
 const deleteProject = async (projectId) => {
   try {
     const res = await getProject().deleteProject(projectId);
-
   } catch (e) {}
 };
 
@@ -20,11 +21,12 @@ type Props = {
 const ProjectDetail = (props: Props) => {
   const router = useRouter();
   const [opened, setOpened] = useState(false);
+  const [alias, setAlias] = useState(props.alias || "");
   const project = props.project;
   const handleDeleteProject = () => {
     deleteProject(project.id);
-    alert('Xoa thanh cong');
-    router.push('/projects');
+    alert("Xoa thanh cong");
+    router.push("/projects");
   };
   return (
     <Box className="my-2 w-100" onClick={() => setOpened(true)}>
@@ -36,12 +38,29 @@ const ProjectDetail = (props: Props) => {
           <div className="content w-2/3">
             <h1 className="block w-1/4">{project?.projectName}</h1>
             <div className="alias">
-              <span className="font-bold text-base">Alias: </span>
-              <p className="block w-1/4">{project?.alias}</p>
+              {/* <span className="font-bold text-base">Alias: </span>
+              <p className="block w-1/4">{project?.alias}</p> */}
+              <TextField
+                disabled
+                id="outlined-disabled"
+                label="Alias"
+                defaultValue={project?.alias}
+
+                // value={alias}
+                // onChange={(e) => setAlias(e.target.value)}
+              />
             </div>
             <div className="description">
-              <span className="font-bold text-base">Description:</span>
-              <p className="block w-1/4">{project?.description}</p>
+              <TextField
+                disabled
+                id="outlined-disabled"
+                label="Description"
+                // multiline
+                // rows={4}
+                defaultValue={project?.description}
+              />
+              {/* <span className="font-bold text-base">Description:</span>
+              <p className="block w-1/4">{project?.description}</p> */}
             </div>
             <div className="category">
               <span className="font-bold text-base">Category:</span>
@@ -59,7 +78,9 @@ const ProjectDetail = (props: Props) => {
           </div>
         </div>
         {project?.id && (
-          <button onClick={handleDeleteProject}>Delete Project</button>
+          <Button variant="contained" onClick={handleDeleteProject}>
+            Delete Project
+          </Button>
         )}
       </Card>
     </Box>

@@ -38,11 +38,11 @@ const TaskCard = (props: Props) => {
       onClick={() => setOpened(true)}
     >
       <Card variant="outlined" className="p-5">
-        <p>{task.alias}</p>
+        <p>{task?.alias}</p>
         <TopicLabel value="Topic Label" color="yellow" />
         <div className="flex flex-row justify-between items-center mt-5">
-          <Point value={task.originalEstimate} />
-          <Priority level={task.priorityId} />
+          <Point value={task?.originalEstimate} />
+          <Priority level={task?.priorityId} />
           <Assignee />
         </div>
       </Card>
@@ -54,11 +54,11 @@ const TaskCard = (props: Props) => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            {props.value.taskName}
+            {props.value?.taskName}
           </Typography>
           <span></span>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {props.value.description}
+            {props.value?.description}
           </Typography>
           và còn nhiều cái... đang lỗi, sao set open state = false mà modal ko
           tắt nên tạm thời refresh lại nha huhu
