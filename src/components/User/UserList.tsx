@@ -20,9 +20,13 @@ const UserList = (props: Props) => {
   }, []);
   return (
     <div>
-      {members?.map((member: any) => (
-        <UserItem user={member} key={member?.id}/>
-      ))}
+      {members.length > 0 ? (
+        members?.map((member: any) => (
+          <UserItem user={member} key={member?.id} />
+        ))
+      ) : (
+        <p>Members list of this project is empty</p>
+      )}
     </div>
   );
 };

@@ -60,16 +60,23 @@ const TaskCard = (props: Props) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            {props.value?.taskName}
-          </Typography>
-          <span></span>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <div
-              dangerouslySetInnerHTML={{ __html: props.value?.description }}
-            />
-          </Typography>
-          <TaskComment commentList={task?.lstComment} taskId={task?.taskId} />
+          <div className="projectName">
+            <span className="font-bold text-base">Task Name:</span>
+            <p className="block">
+              {props.value?.taskName
+                ? props.value?.taskName
+                : "Not information"}
+            </p>
+          </div>
+
+          <div className="projectName">
+            <span className="font-bold text-base">Description:</span>
+            <p dangerouslySetInnerHTML={{ __html: props.value?.description }} />
+          </div>
+          <div className="comment">
+            <span className="font-bold text-base">Comments:</span>
+            <TaskComment commentList={task?.lstComment} taskId={task?.taskId} />
+          </div>
         </Box>
       </Modal>
     </>

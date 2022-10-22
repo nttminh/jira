@@ -22,6 +22,7 @@ const Projects = (props: Props) => {
   }, []);
   return (
     <div>
+      <h1>Projects List</h1>
       <ProjectList list={list} projectName={""} />
     </div>
   );

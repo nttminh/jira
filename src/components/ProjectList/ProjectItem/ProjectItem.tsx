@@ -35,12 +35,12 @@ const ProjectItem = (props: Props) => {
         }}
       >
         <Card variant="outlined">
-          <div className="flex flex-row justify-between items-center px-5 h-12">
-            <span className="block w-1/4">{project?.id}</span>
+          <div className="flex flex-row justify-between items-center px-5 ">
+            <span className="block w-1/8">{project?.id}</span>
             <span className="block w-1/4">{project?.projectName}</span>
-            <span className="block w-1/4">{project?.alias}</span>
-            <span className="block w-1/4" dangerouslySetInnerHTML={{__html: project?.description}} />
+            <span className="block w-1/3" dangerouslySetInnerHTML={{__html: project?.description}} />
             <button
+              className="w-1/8"
               type="button"
               onClick={activateProject}
               >

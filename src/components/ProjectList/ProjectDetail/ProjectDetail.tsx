@@ -15,7 +15,7 @@ const deleteProject = async (projectId: number) => {
 };
 
 type Props = {
-  project: any ;
+  project: any;
   // alias: string  | undefined;
 };
 
@@ -29,61 +29,71 @@ const ProjectDetail = (props: Props) => {
     alert("Xoa thanh cong");
     router.push("/projects");
   };
+  const activateProject = (e: any) => {
+    localStorage.setItem("activeProject", project?.id + "");
+    alert(`Project ${project.projectName} is active now!`);
+    router.push("/active");
+    e.stopPropagation();
+  };
   return (
-    <Box className="my-2 w-100" onClick={() => setOpened(true)}>
-      <Card variant="outlined">
-        <div className="id inline-block bg-slate-100">
-          <span className="block w-1/4">ID:{project?.id}</span>
-        </div>
-        <div className="px-5 flex flex-row">
-          <div className="content w-2/3">
-            <h1 className="block w-1/4">{project?.projectName}</h1>
-            <div className="alias">
-              {/* <span className="font-bold text-base">Alias: </span>
-              <p className="block w-1/4">{project?.alias}</p> */}
-              <TextField
-                disabled
-                id="outlined-disabled"
-                label="Alias"
-                defaultValue={project?.alias}
-
-                // value={alias}
-                // onChange={(e) => setAlias(e.target.value)}
-              />
-            </div>
-            <div className="description">
-              <TextField
-                disabled
-                id="outlined-disabled"
-                label="Description"
-                // multiline
-                // rows={4}
-                defaultValue={project?.description}
-              />
-              {/* <span className="font-bold text-base">Description:</span>
-              <p className="block w-1/4">{project?.description}</p> */}
-            </div>
-            <div className="category">
-              <span className="font-bold text-base">Category:</span>
-              <p className="block w-1/4">{project?.projectCategory?.name}</p>
-            </div>
-          </div>
-          <div className="team border-solid w-1/3">
-            <div className="creator">
-              <span className=" font-bold text-base">Creator:</span>
-              <p>{project?.creator?.name}</p>
-            </div>
-            <div className="members">
-              <span className="font-bold text-base">Members:</span>
-            </div>
-          </div>
-        </div>
-        {project?.id && (
+    <Box className="my-2 w-100">
+      <h1>Project Detail</h1>
+      <div className="id">
+        <span className="font-bold text-base">ID:</span>
+        <p className="block">{project?.id ? project?.id : "Not information"}</p>
+      </div>
+      <div className="projectName">
+        <span className="font-bold text-base">Name:</span>
+        <p className="block">
+          {project?.projectName ? project?.projectName : "Not information"}
+        </p>
+      </div>
+      <div className="alias">
+        <span className="font-bold text-base">Alias:</span>
+        <p className="block">
+          {project?.alias ? project?.alias : "Not information"}
+        </p>
+      </div>
+      <div className="description">
+        <span className="font-bold text-base">Description:</span>
+        <p className="block">
+          {project?.description ? project?.description : "Not information"}
+        </p>
+      </div>
+      <div className="category">
+        <span className="font-bold text-base">Category:</span>
+        <p className="block">
+          {project?.projectCategory?.name
+            ? project?.projectCategory?.name
+            : "Not information"}
+        </p>
+      </div>
+      <div className="creator">
+        <span className="font-bold text-base">Creator:</span>
+        <p className="block">
+          {project?.creator?.name ? project?.creator?.name : "Not information"}
+        </p>
+      </div>
+      <div className="members">
+        <span className="font-bold text-base">Members:</span>
+        <p className="block">
+          {project?.members
+            ? project.members.map((mem: any) => (
+                <p key={mem.name}>{mem?.name}</p>
+              ))
+            : "Not information"}
+        </p>
+      </div>
+      {project?.id && (
+        <>
           <Button variant="contained" onClick={handleDeleteProject}>
             Delete Project
           </Button>
-        )}
-      </Card>
+          <Button variant="contained" onClick={activateProject}>
+            Activate Project
+          </Button>
+        </>
+      )}
     </Box>
   );
 };

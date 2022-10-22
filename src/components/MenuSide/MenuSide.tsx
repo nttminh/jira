@@ -11,7 +11,7 @@ import DraftsIcon from "@mui/icons-material/Drafts";
 type Props = {};
 
 const MenuSide = (props: Props) => {
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [selectedIndex, setSelectedIndex] = React.useState(2);
 
   const handleListItemClick = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
@@ -24,15 +24,6 @@ const MenuSide = (props: Props) => {
     <Box>
       <h2>current Project Title</h2>
       <List component="nav" aria-label="main mailbox folders">
-        <ListItemButton
-          selected={selectedIndex === 0}
-          onClick={(event) => handleListItemClick(event, 0)}
-        >
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Backlog" />
-        </ListItemButton>
         <ListItemButton
           selected={selectedIndex === 1}
           onClick={(event) => handleListItemClick(event, 1)}

@@ -28,7 +28,7 @@ const TaskComment = (props: Props) => {
 
   return (
     <div>
-      {comments.map((comment: {contentComment: unknown;}) => (
+      {comments.length > 0 ? comments.map((comment: {contentComment: unknown;}) => (
         <TextField
           style={{ width: "100%" }}
           key={`${comment?.contentComment}key`}
@@ -36,7 +36,7 @@ const TaskComment = (props: Props) => {
           variant="standard"
           defaultValue={comment.contentComment}
         />
-      ))}
+      )) : 'Not have any comment'}
 
       <TextField
         value={commentString}

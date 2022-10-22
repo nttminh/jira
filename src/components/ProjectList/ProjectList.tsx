@@ -20,10 +20,10 @@ const ProjectList = (props: Props) => {
       <Box className="my-2 w-100 cursor-pointer ">
         <Card variant="outlined" className="bg-gray-100 ">
           <div className="flex flex-row justify-between  items-center px-5 font-bold h-12">
-            <span className="block w-1/4">ID</span>
+            <span className="block w-1/8">ID</span>
             <span className="block w-1/4">Project Name</span>
-            <span className="block w-1/4">Alias</span>
-            <span className="block w-1/4">Description</span>
+            <span className="block w-1/3">Description</span>
+            <span className="block w-1/8">Set Active</span>
           </div>
         </Card>
       </Box>

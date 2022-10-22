@@ -12,10 +12,10 @@ const UserItem = (props: Props) => {
     <Card variant="outlined">
       <div className="flex flex-row justify-between items-center px-5">
         <Avatar alt={name} src={avatar} />
-        <p>{id}</p> <p></p>
-        <p>{name}</p>
-        <p>{phoneNumber}</p>
-        <p>{userId}</p>
+        <p className="w-1/6">{id}</p> 
+        <p className="w-1/3">{name}</p>
+        <p className="w-1/4">{phoneNumber}</p>
+        <p className="w-1/4">{userId}</p>
       </div>
     </Card>
   );

@@ -29,18 +29,7 @@ const MenuSide = (props: Props) => {
     <Box>
       <List component="nav" aria-label="main mailbox folders">
         <h3>Our Active Project</h3>
-        <ListItemButton
-          selected={selectedIndex === 0}
-          onClick={(event) => {
-            setSelectedIndex(0);
-            router.push("/backlog");
-          }}
-        >
-          <ListItemIcon>
-            <ViewListIcon />
-          </ListItemIcon>
-          <ListItemText primary="Backlog" />
-        </ListItemButton>
+
         <ListItemButton
           selected={selectedIndex === 1}
           onClick={(event) => {
