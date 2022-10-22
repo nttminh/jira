@@ -114,8 +114,6 @@ const CreateProject = (props: Props) => {
 				}
 				break;
 			case 2:
-				console.log('activeStep', activeStep);
-				console.log('isValid', isValid);
 				handleSubmit(onSubmit)();
 
 				break;
@@ -146,11 +144,9 @@ const CreateProject = (props: Props) => {
 				projectName: form.ProjectName,
 				description: form.Description,
 			});
-			console.log(data);
 			projectDispatch({ type: 'SET_PROJECT', payload: data.content });
 
 			router.push('/');
-			console.log(data);
 		} catch (error) {
 			console.log(error);
 		} finally {

@@ -27,7 +27,7 @@ class Projects {
 
   getProjectDetail(id: number) {
     return axios
-      .get(`${PROJECT_URI}/etProjectDetail/${id}`)
+      .get(`${PROJECT_URI}/getProjectDetail?id=${id}`)
       .then((response) => {
         return response;
       })
@@ -47,9 +47,9 @@ class Projects {
       });
   }
 
-  deleteProject(projectId: number, formData: Project) {
+  deleteProject(projectId: number) {
     return axios
-      .delete(`${PROJECT_URI}/deleteProject/${projectId}`)
+      .delete(`${PROJECT_URI}/deleteProject?projectId=${projectId}`)
       .then((response) => {
         return response;
       })

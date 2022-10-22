@@ -12,7 +12,6 @@ const Projects = (props: Props) => {
   const getProjects = async () => {
     try {
       const res = await getProject().getAllProject();
-      console.log("getServerSideProps", res);
       setList(res?.data?.content || []);
     } catch (e) {
       setList([]);
