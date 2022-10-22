@@ -15,15 +15,15 @@ const deleteProject = async (projectId: number) => {
 };
 
 type Props = {
-  project: GetProjectDetailContent ;
-  alias: string  | undefined;
+  project: any ;
+  // alias: string  | undefined;
 };
 
 const ProjectDetail = (props: Props) => {
+  const project = props.project;
   const router = useRouter();
   const [opened, setOpened] = useState(false);
-  const [alias, setAlias] = useState(props?.alias || "");
-  const project = props.project;
+  const [alias, setAlias] = useState(project?.alias || "");
   const handleDeleteProject = () => {
     deleteProject(project?.id);
     alert("Xoa thanh cong");

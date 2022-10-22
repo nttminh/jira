@@ -17,7 +17,7 @@ const Members = (props: Props) => {
   return (
     <div>
       {members?.map((member) => (
-        <UserItem user={member} key={member?.id} />
+        <UserItem user={member} key={`key${member}`}  />
       ))}
     </div>
   );

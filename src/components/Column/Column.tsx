@@ -4,7 +4,7 @@ import { GetProjectDetailContent, LstTask } from "../../interface/Project";
 import TaskCard from "../TaskCard/TaskCard";
 import { Tooltip } from "@mui/material";
 type Props = {
-  list: GetProjectDetailContent;
+  list: any;
 };
 
 const Column = (props: Props) => {
