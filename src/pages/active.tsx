@@ -11,52 +11,57 @@ type Props = {};
 
 const Active = (props: Props) => {
   const prjId = localStorage.getItem("activeProject") || 0;
-  const [list, setList ] =useState({});
-  const [filteredTasks, setFilteredTasks ] =useState({
-    1: [],
-    2: [],
-    3:[],
-    4: [],
-  });
+  const [list, setList] = useState(null);
+  const [filteredTasks, setFilteredTasks] = useState({});
 
   let info = null;
+
   const getActive = async () => {
     try {
-      const res = await getProject().getProjectDetail(prjId).then(res => res.data);
-      console.log("dataaaaa", res.content, prjId);
+      const res = await getProject()
+        .getProjectDetail(+prjId)
+        .then((res) => res.data);
       setList(res?.content || {});
-    } catch (e) {
-    }
+    } catch (e) {}
   };
+
   useEffect(() => {
     getActive();
-  },[]);
+  }, []);
 
   useEffect(() => {
     const listTask = list?.lstTask;
     if (!listTask) {
       return;
     }
+    console.log(listTask);
+
+    const filterTasksMap = {};
+
     listTask.forEach((task: Task) => {
-      // console.log("list task. tastusid" , filteredTasks[+task.statusId]);
-      filteredTasks[+task.statusId].push(task);
-    })
-    // console.log('---', listTask);
-  },[list])
+      filterTasksMap[task.statusId] = task;
+    });
+
+    setFilteredTasks(filterTasksMap);
+  }, [list]);
+
   return (
     <div>
       <h1>Project Title</h1>
       <div className="project-info">
         <p>Name: {list?.projectName}</p>
-        <p>Description: {list?.description}</p>
+        <p>
+          Description:
+          <div dangerouslySetInnerHTML={{ __html: list?.description }} />
+        </p>
         <p>Alias: {list?.alias}</p>
         <p>Category: {list?.projectCategory?.name}</p>
       </div>
       <div className="flex flex-row">
-        <Column title="TO DO" list={filteredTasks[1]} />
-        <Column title="DOING" list={filteredTasks[2]} />
-        <Column title="TESTING" list={filteredTasks[3]} />
-        <Column title="DONE" list={filteredTasks[4]} />
+        <Column list={filteredTasks[1]} />
+        <Column list={filteredTasks[2]} />
+        <Column list={filteredTasks[3]} />
+        <Column list={filteredTasks[4]} />
       </div>
       TEAM MEMBERS
       <UserList id={prjId} />

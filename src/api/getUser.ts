@@ -13,7 +13,7 @@ class Users {
         return error;
       });
   }
-  getUserListById(id) {
+  getUserListById(id: number) {
     return axios
       .get(`${USERS_URI}/getUserByProjectId?IdProject=${id}`)
       .then((response) => {

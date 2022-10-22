@@ -8,8 +8,7 @@ const Members = (props: Props) => {
   const [members, setMembers] = useState([]);
   const getUsers = async () => {
     const res = await getUser().getUserList();
-    setMembers(res.data.content);
-    console.log("user", res.data.content);
+    setMembers(res?.data?.content || []);
   };
 
   useEffect(() => {
@@ -18,7 +17,7 @@ const Members = (props: Props) => {
   return (
     <div>
       {members?.map((member) => (
-        <UserItem user={member} />
+        <UserItem user={member} key={member?.id} />
       ))}
     </div>
   );

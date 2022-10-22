@@ -11,9 +11,12 @@ import Priority from "./Priority/Priority";
 import Assignee from "./Assignee/Assignee";
 import { LstTask } from "../../interface/Project";
 import Modal from "@mui/material/Modal";
+import { TextField } from "@mui/material";
+import { Task } from "../../interface/Task";
+import TaskComment from "./TaskComment";
 
 type Props = {
-  value: Task;
+  value: any;
 };
 const style = {
   position: "absolute" as "absolute",
@@ -28,24 +31,28 @@ const style = {
 };
 
 const TaskCard = (props: Props) => {
-  console.log('===', props);
-  const task = props?.lstTaskDeTail;
+  const task = props.value;
   const [opened, setOpened] = useState(false);
+
+  console.log({ task });
+
   return (
-    <Box
-      sx={{ minWidth: 275 }}
-      className="my-2"
-      onClick={() => setOpened(true)}
-    >
-      <Card variant="outlined" className="p-5">
-        <p>{task?.alias}</p>
-        <TopicLabel value="Topic Label" color="yellow" />
-        <div className="flex flex-row justify-between items-center mt-5">
-          <Point value={task?.originalEstimate} />
-          <Priority level={task?.priorityId} />
-          <Assignee />
-        </div>
-      </Card>
+    <>
+      <Box
+        sx={{ minWidth: 275 }}
+        className="my-2"
+        onClick={() => setOpened(true)}
+      >
+        <Card variant="outlined" className="p-5">
+          <p>{task?.alias}</p>
+          <TopicLabel value={task.taskTypeDetail.taskType} color="yellow" />
+          <div className="flex flex-row justify-between items-center mt-5">
+            <Point value={task?.originalEstimate} />
+            <Priority level={task?.priorityId} />
+            <Assignee />
+          </div>
+        </Card>
+      </Box>
       <Modal
         open={opened}
         onClose={() => setOpened(false)}
@@ -58,20 +65,14 @@ const TaskCard = (props: Props) => {
           </Typography>
           <span></span>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {props.value?.description}
+            <div
+              dangerouslySetInnerHTML={{ __html: props.value?.description }}
+            />
           </Typography>
-          và còn nhiều cái... đang lỗi, sao set open state = false mà modal ko
-          tắt nên tạm thời refresh lại nha huhu
-          <Button
-            onClick={() => {
-              setOpened(false);
-            }}
-          >
-            X
-          </Button>
+          <TaskComment commentList={task?.lstComment} taskId={task?.taskId} />
         </Box>
       </Modal>
-    </Box>
+    </>
   );
 };
 

@@ -30,20 +30,21 @@ const style = {
 
 const TaskItem = (props: Props) => {
   const [opened, setOpened] = useState(false);
-  console.log("prio", props.value.priorityId);
   return (
-    <Box className="my-2 w-100" onClick={() => setOpened(true)}>
-      <Card variant="outlined">
-        <div className="flex flex-row justify-between items-center px-5">
-          <span className="block w-3/4">{props.value.taskName}</span>
-          <div className="flex flex-row justify-between  items-center w-1/4">
-            <TopicLabel value="Topic Label" color="yellow" />
-            <Assignee />
-            <Priority level={props.value.priorityId} />
-            <Point value={props.value.originalEstimate} />
+    <>
+      <Box className="my-2 w-100" onClick={() => setOpened(true)}>
+        <Card variant="outlined">
+          <div className="flex flex-row justify-between items-center px-5">
+            <span className="block w-3/4">{props.value.taskName}</span>
+            <div className="flex flex-row justify-between  items-center w-1/4">
+              <TopicLabel value="Topic Label" color="yellow" />
+              <Assignee />
+              <Priority level={props.value.priorityId} />
+              <Point value={props.value.originalEstimate} />
+            </div>
           </div>
-        </div>
-      </Card>
+        </Card>
+      </Box>
       <Modal
         open={opened}
         onClose={() => setOpened(false)}
@@ -58,19 +59,9 @@ const TaskItem = (props: Props) => {
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             {props.value.description}
           </Typography>
-          và còn nhiều cái... đang lỗi, sao set open state = false mà modal ko
-          tắt nên tạm thời refresh lại nha huhu
-          <Button
-            onClick={() => {
-              console.log("clic");
-              setOpened(false);
-            }}
-          >
-            X
-          </Button>
         </Box>
       </Modal>
-    </Box>
+    </>
   );
 };
 

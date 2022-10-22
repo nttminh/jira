@@ -8,23 +8,24 @@ import TextField from "@mui/material/TextField";
 
 import { GetProjectDetailContent } from "../../../interface/Project";
 
-const deleteProject = async (projectId) => {
+const deleteProject = async (projectId: number) => {
   try {
     const res = await getProject().deleteProject(projectId);
   } catch (e) {}
 };
 
 type Props = {
-  project: GetProjectDetailContent | undefined;
+  project: GetProjectDetailContent ;
+  alias: string  | undefined;
 };
 
 const ProjectDetail = (props: Props) => {
   const router = useRouter();
   const [opened, setOpened] = useState(false);
-  const [alias, setAlias] = useState(props.alias || "");
+  const [alias, setAlias] = useState(props?.alias || "");
   const project = props.project;
   const handleDeleteProject = () => {
-    deleteProject(project.id);
+    deleteProject(project?.id);
     alert("Xoa thanh cong");
     router.push("/projects");
   };

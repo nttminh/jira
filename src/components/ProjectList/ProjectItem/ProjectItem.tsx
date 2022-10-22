@@ -39,7 +39,7 @@ const ProjectItem = (props: Props) => {
             <span className="block w-1/4">{project?.id}</span>
             <span className="block w-1/4">{project?.projectName}</span>
             <span className="block w-1/4">{project?.alias}</span>
-            <span className="block w-1/4">{project?.description}</span>
+            <span className="block w-1/4" dangerouslySetInnerHTML={{__html: project?.description}} />
             <button
               type="button"
               onClick={activateProject}
