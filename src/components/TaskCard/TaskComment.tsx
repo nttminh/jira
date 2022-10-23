@@ -1,8 +1,7 @@
-import { TextField } from "@mui/material";
-import React, { useState } from "react";
-import { getComment } from "../../api/getComment";
-import SendIcon from "@mui/icons-material/Send";
-import { IconButton } from "@mui/material";
+import SendIcon from '@mui/icons-material/Send';
+import { IconButton, TextField } from '@mui/material';
+import { useState } from 'react';
+import { getComment } from '../../api/getComment';
 type Props = {
   commentList: any;
   taskId: any;
@@ -10,7 +9,7 @@ type Props = {
 const TaskComment = (props: Props) => {
   const [comments, setComments] = useState(props.commentList);
 
-  const [commentString, setCommentString] = useState("");
+  const [commentString, setCommentString] = useState('');
 
   const insertComment = async () => {
     const data = {
@@ -20,8 +19,10 @@ const TaskComment = (props: Props) => {
 
     const res = await getComment().insertComment(data);
     if (res?.data?.statusCode === 200) {
-      const { contentComment = "", taskId } = res?.data?.content;
-      setComments([...comments, { contentComment, taskId }]);
+      if (res?.data?.content) {
+        const { contentComment = '', taskId } = res.data.content;
+        setComments([...comments, { contentComment, taskId }]);
+      }
     }
   };
 
@@ -30,18 +31,18 @@ const TaskComment = (props: Props) => {
       {comments.length > 0
         ? comments.map((comment: { contentComment: unknown }) => (
             <TextField
-              style={{ width: "100%" }}
+              style={{ width: '100%' }}
               key={`${comment?.contentComment}key`}
               label="Comment"
               variant="standard"
               defaultValue={comment.contentComment}
             />
           ))
-        : "Not have any comment"}
+        : 'Not have any comment'}
 
       <br />
       <TextField
-        style={{ width: "90%" }}
+        style={{ width: '90%' }}
         value={commentString}
         placeholder="Add your comment"
         onChange={(e) => setCommentString(e.target.value)}
