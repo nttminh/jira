@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { GetServerSideProps } from "next";
-import ProjectItem from "../../components/ProjectList/ProjectItem/ProjectItem";
-import { getProject } from "../../api/getProject";
-import { GetProjectDetailContent } from "../../interface/Project";
-import { useRouter } from "next/router";
-import ProjectDetail from "../../components/ProjectList/ProjectDetail/ProjectDetail";
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { getProject } from '../../api/getProject';
+import ProjectDetail from '../../components/ProjectList/ProjectDetail/ProjectDetail';
+import { GetProjectDetailContent } from '../../interface/Project';
 type Props = {};
 
 const Project = (props: Props) => {
@@ -17,10 +15,12 @@ const Project = (props: Props) => {
     try {
       const res = await getProject().getAllProject();
       const pj = res?.data?.content.find((item: GetProjectDetailContent) => {
-        return item.id + "" == projectId;
+        return item.id + '' == projectId;
       });
       setProject(pj);
-    } catch (e) {}
+    } catch (e) {
+      console.error(e);
+    }
   };
   useEffect(() => {
     getProjects();
