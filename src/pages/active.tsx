@@ -67,33 +67,37 @@ const Active = (props: Props) => {
       <h1>Current Active Project</h1>
       <div className="project-info">
         <div className="projectName">
-          <span className="font-bold text-base">Project Name:</span>
-          <p className="block">
+          <span className="font-bold text-base leading-10 mr-2">
+            Project Name:
+          </span>
+          <span>
             {list?.projectName ? list?.projectName : "Not information"}
-          </p>
+          </span>
         </div>
         <div className="projectName">
-          <span className="font-bold text-base">Description:</span>
+          <span className="font-bold text-base  leading-10 mr-2">
+            Description:
+          </span>
           <p
-            className="block"
+            className="  leading-10"
             dangerouslySetInnerHTML={{
               __html: list?.description ? list?.description : "Not information",
             }}
           ></p>
         </div>
         <div className="alias">
-          <span className="font-bold text-base">Alias:</span>
-          <p className="block">
-            {list?.alias ? list?.alias : "Not information"}
-          </p>
+          <span className="font-bold text-base  leading-10 mr-2">Alias:</span>
+          <span>{list?.alias ? list?.alias : "Not information"}</span>
         </div>
         <div className="projectCategory">
-          <span className="font-bold text-base">Project Category:</span>
-          <p className="block">
+          <span className="font-bold text-base  leading-10 mr-2">
+            Project Category:
+          </span>
+          <span>
             {list?.projectCategory?.name
               ? list?.projectCategory?.name
               : "Not information"}
-          </p>
+          </span>
         </div>
       </div>
       <div className="flex flex-row">

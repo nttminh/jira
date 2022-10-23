@@ -38,45 +38,50 @@ const ProjectDetail = (props: Props) => {
   return (
     <Box className="my-2 w-100">
       <h1>Project Detail</h1>
-      <div className="id">
-        <span className="font-bold text-base">ID:</span>
-        <p className="block">{project?.id ? project?.id : "Not information"}</p>
+      <div className="id   ">
+        <span className="font-bold text-base leading-10 mr-2 ">ID:</span>
+        <span>{project?.id ? project?.id : "Not information"}</span>
       </div>
-      <div className="projectName">
-        <span className="font-bold text-base">Name:</span>
-        <p className="block">
+      <div className="projectName   ">
+        <span className="font-bold text-base leading-10 mr-2">Name:</span>
+        <span>
           {project?.projectName ? project?.projectName : "Not information"}
-        </p>
+        </span>
       </div>
-      <div className="alias">
-        <span className="font-bold text-base">Alias:</span>
-        <p className="block">
-          {project?.alias ? project?.alias : "Not information"}
-        </p>
+      <div className="alias   ">
+        <span className="font-bold text-base leading-10 mr-2">Alias:</span>
+        <span>{project?.alias ? project?.alias : "Not information"}</span>
       </div>
-      <div className="description">
-        <span className="font-bold text-base">Description:</span>
-        <p className="block">
-          {project?.description ? project?.description : "Not information"}
-        </p>
+      <div className="description   ">
+        <span className="font-bold text-base leading-10 mr-2">
+          Description:
+        </span>
+        <p
+          className="leading-10"
+          dangerouslySetInnerHTML={{
+            __html: project?.description
+              ? project?.description
+              : "Not information",
+          }}
+        ></p>
       </div>
-      <div className="category">
-        <span className="font-bold text-base">Category:</span>
-        <p className="block">
+      <div className="category   ">
+        <span className="font-bold text-base leading-10 mr-2">Category:</span>
+        <span>
           {project?.projectCategory?.name
             ? project?.projectCategory?.name
             : "Not information"}
-        </p>
+        </span>
       </div>
-      <div className="creator">
-        <span className="font-bold text-base">Creator:</span>
-        <p className="block">
+      <div className="creator   ">
+        <span className="font-bold text-base leading-10 mr-2">Creator:</span>
+        <span>
           {project?.creator?.name ? project?.creator?.name : "Not information"}
-        </p>
+        </span>
       </div>
-      <div className="members">
-        <span className="font-bold text-base">Members:</span>
-        <p className="block">
+      <div className="members   ">
+        <span className="font-bold text-base leading-10 mr-2">Members:</span>
+        <p className="leading-10">
           {project?.members
             ? project.members.map((mem: any) => (
                 <p key={mem.name}>{mem?.name}</p>
@@ -86,7 +91,7 @@ const ProjectDetail = (props: Props) => {
       </div>
       {project?.id && (
         <>
-          <Button variant="contained" onClick={handleDeleteProject}>
+          <Button variant="contained" onClick={handleDeleteProject} className="mr-5">
             Delete Project
           </Button>
           <Button variant="contained" onClick={activateProject}>
