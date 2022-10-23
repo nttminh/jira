@@ -7,7 +7,7 @@ import { GetProjectDetailContent, LstTask } from "../interface/Project";
 import { getProject } from "../api/getProject";
 import { useEffect, useState } from "react";
 import UserList from "../components/User/UserList";
-import {any} from "prop-types";
+import { any } from "prop-types";
 
 type Props = {};
 
@@ -15,15 +15,15 @@ const Active = (props: Props) => {
   const prjId = localStorage.getItem("activeProject") || 0;
   const [list, setList] = useState({
     lstTask: [],
-    projectName: '',
-    description: '',
-    alias:'',
+    projectName: "",
+    description: "",
+    alias: "",
     projectCategory: {
-      name: '',
+      name: "",
     },
   });
   const [filteredTasks, setFilteredTasks] = useState({});
- 
+
   let info = null;
 
   const getActive = async () => {
@@ -45,9 +45,7 @@ const Active = (props: Props) => {
       return;
     }
     console.log(listTask);
-
     let filterTasksMap = {};
-
     listTask.forEach((task: Task) => {
       // filterTasksMap[task.statusId] = task;
       filterTasksMap = { ...filterTasksMap, [task.statusId]: task };
@@ -56,23 +54,51 @@ const Active = (props: Props) => {
 
     setFilteredTasks({ ...filterTasksMap });
   }, [list]);
-  setFilteredTasks({
-    1: null,
-    2: null,
-    3: null,
-    4: null,
-  });
+
+  // setFilteredTasks({
+  //   1: null,
+  //   2: null,
+  //   3: null,
+  //   4: null,
+  // });
+
   return (
     <div>
-      <h1>Project Title</h1>
+      <h1>Current Active Project</h1>
       <div className="project-info">
-        <p>Name: {list?.projectName}</p>
-        <p>
-          Description:
-          <div dangerouslySetInnerHTML={{ __html: list?.description }} />
-        </p>
-        <p>Alias: {list?.alias}</p>
-        <p>Category: {list?.projectCategory?.name}</p>
+        <div className="projectName">
+          <span className="font-bold text-base leading-10 mr-2">
+            Project Name:
+          </span>
+          <span>
+            {list?.projectName ? list?.projectName : "Not information"}
+          </span>
+        </div>
+        <div className="projectName">
+          <span className="font-bold text-base  leading-10 mr-2">
+            Description:
+          </span>
+          <p
+            className="  leading-10"
+            dangerouslySetInnerHTML={{
+              __html: list?.description ? list?.description : "Not information",
+            }}
+          ></p>
+        </div>
+        <div className="alias">
+          <span className="font-bold text-base  leading-10 mr-2">Alias:</span>
+          <span>{list?.alias ? list?.alias : "Not information"}</span>
+        </div>
+        <div className="projectCategory">
+          <span className="font-bold text-base  leading-10 mr-2">
+            Project Category:
+          </span>
+          <span>
+            {list?.projectCategory?.name
+              ? list?.projectCategory?.name
+              : "Not information"}
+          </span>
+        </div>
       </div>
       <div className="flex flex-row">
         {/* {
@@ -80,13 +106,18 @@ const Active = (props: Props) => {
         Object.keys(filteredTasks).map((id: string) => (
           <Column list={filteredTasks[+id]} />
         ))} */}
-      
-        <Column list={filteredTasks?[1]: any} />
-        <Column list={filteredTasks?[2]: any} />
-        <Column list={filteredTasks?[3]: any} />
-        <Column list={filteredTasks?[4]: any} />
+        {Object.keys(filteredTasks).length > 0 ? (
+          <>
+            <Column list={filteredTasks} id={1} />
+            <Column list={filteredTasks} id={2} />
+            <Column list={filteredTasks} id={3} />
+            <Column list={filteredTasks} id={4} />
+          </>
+        ) : (
+          "Don;t have any task in this project"
+        )}
       </div>
-      TEAM MEMBERS
+      <h1>Members of this project</h1>
       <UserList id={prjId} />
     </div>
   );

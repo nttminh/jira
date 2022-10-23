@@ -5,30 +5,35 @@ import TaskCard from "../TaskCard/TaskCard";
 import { Tooltip } from "@mui/material";
 type Props = {
   list: any;
+  id: number;
 };
 
 const Column = (props: Props) => {
-  const listTask = props.list;
-
+  const listTask = props.list[props.id];
+  console.log("=", listTask);
   return (
-    <div className="m-2 w-full">
-      <Tooltip title={listTask?.alias}>
-        <Box className="bg-slate-100 text-center my-2 leading-10">
-          <h3 className="my-1">{listTask?.statusName}</h3>
-        </Box>
-      </Tooltip>
-      <div className="flex flex-col px-2 py-3 bg-slate-100">
-        {listTask?.lstTaskDeTail?.length > 0 ? (
-          <>
-            {listTask.lstTaskDeTail.map((task: any) => (
-              <TaskCard key={task.taskId} value={task} />
-            ))}
-          </>
-        ) : (
-          <>No tasks</>
-        )}
-      </div>
-    </div>
+    <>
+      {listTask.alias !== "" ? (
+        <div className="m-2 w-full">
+          <Tooltip title={listTask?.alias}>
+            <Box className="bg-slate-100 text-center my-2 leading-10">
+              <h3 className="my-1">{listTask?.statusName}</h3>
+            </Box>
+          </Tooltip>
+          <div className="flex flex-col px-2 py-3 bg-slate-100">
+            {listTask?.lstTaskDeTail?.length > 0 ? (
+              <>
+                {listTask.lstTaskDeTail.map((task: any) => (
+                  <TaskCard key={task.taskId} value={task} />
+                ))}
+              </>
+            ) : (
+              <>No tasks</>
+            )}
+          </div>
+        </div>
+      ) : null}
+    </>
   );
 };
 
