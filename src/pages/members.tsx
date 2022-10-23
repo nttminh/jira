@@ -17,9 +17,9 @@ const Members = (props: Props) => {
   }, []);
   return (
     <div>
-      <h1>Members List</h1>
-      <Card variant="outlined">
-        <div className="flex flex-row justify-between items-center px-5">
+      <h1>Members List</h1> 
+      <Card variant="outlined"  className="bg-gray-100 ">
+      <div className="flex flex-row justify-between  items-center px-5 font-bold h-12">
           <p className="w-1/6">ID</p>
           <p className="w-1/3">Name</p>
           <p className="w-1/4">Phone</p>

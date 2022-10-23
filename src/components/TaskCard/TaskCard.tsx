@@ -60,21 +60,28 @@ const TaskCard = (props: Props) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
+          <h1>Task Detail</h1>
           <div className="projectName">
-            <span className="font-bold text-base">Task Name:</span>
-            <p className="block">
+            <h4>Task Name:</h4>
+            <span className="block">
               {props.value?.taskName
                 ? props.value?.taskName
                 : "Not information"}
-            </p>
+            </span>
           </div>
 
           <div className="projectName">
-            <span className="font-bold text-base">Description:</span>
-            <p dangerouslySetInnerHTML={{ __html: props.value?.description }} />
+            <h4>Description:</h4>
+            <span
+              dangerouslySetInnerHTML={{
+                __html: props.value?.description
+                  ? props.value?.description
+                  : "Not information",
+              }}
+            />
           </div>
           <div className="comment">
-            <span className="font-bold text-base">Comments:</span>
+            <h4>Comments:</h4>
             <TaskComment commentList={task?.lstComment} taskId={task?.taskId} />
           </div>
         </Box>
