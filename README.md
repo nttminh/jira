@@ -14,7 +14,7 @@ This was created thanks to [ngoctinvo](https://github.com/ngoctinvo) and [nttmin
 ## Techonologies
 - NextJS, PWA
 - TailwindCSS
-- Libraries such as Mui, Reac Toastify, Yup...
+- Libraries such as Mui, React Toastify, Yup...
 - Remain responsive across devices
 
 ## Installation
