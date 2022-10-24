@@ -4,6 +4,19 @@ This is a direct clone from [Jira](https://www.atlassian.com/software/jira). Jir
 
 This was created thanks to [ngoctinvo](https://github.com/ngoctinvo) and [nttminh](https://github.com/nttminh)
 
+## Table of contents
+
+- [Technologies](#technologies)
+- [Installation](#installation)
+- [Screenshots](#screenshots)
+- [Contributing](#contributing)
+
+## Techonologies
+- NextJS, PWA
+- TailwindCSS
+- Libraries such as Mui, Reac Toastify, Yup...
+- Remain responsive across devices
+
 ## Installation
 
 Use the package manager [yarn](https://yarnpkg.com/) to install all dependencies.
@@ -20,7 +33,8 @@ yarn dev
 
 ## Screenshots
 
-![screenshot](https://scontent.xx.fbcdn.net/v/t1.15752-9/299619721_592545475658500_3314760946925424316_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=aee45a&_nc_ohc=fwCkPUlPqbAAX9BwwK0&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVLOyw1yFpkMfb959b5An02g9JKraTzcxMsqZRgzUoF1ow&oe=6329794C)
+[![Create Project Page](https://i.postimg.cc/6Qqr81rp/image.png)](https://postimg.cc/67s2Scbk)
+[![Profile Page](https://i.postimg.cc/6pkWZ8R4/image.png)](https://postimg.cc/0zC1R2V9)
 
 ## Contributing
 
