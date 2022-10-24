@@ -9,6 +9,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { NextPage } from 'next';
 
+import Head from 'next/head';
 import ProtectedRoute from '../components/features/auth/ProtectedRoute';
 import AppLayout from '../containers/AppLayout';
 import { AuthProvider } from '../context/auth/auth.provider';
@@ -18,44 +19,47 @@ import { lightTheme } from '../styles/theme/lightTheme';
 import createEmotionCache from '../utility/createEmotionCache';
 
 export type NextPageWithLayout = NextPage & {
-	getLayout?: (page: React.ReactElement) => React.ReactElement;
-	authDisabled?: boolean;
+  getLayout?: (page: React.ReactElement) => React.ReactElement;
+  authDisabled?: boolean;
 };
 interface MyAppProps extends AppProps {
-	Component: NextPageWithLayout;
-	emotionCache?: EmotionCache;
+  Component: NextPageWithLayout;
+  emotionCache?: EmotionCache;
 }
 
 const clientSideEmotionCache = createEmotionCache();
 
 const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
-	const {
-		Component,
-		emotionCache = clientSideEmotionCache,
-		pageProps,
-	} = props;
+  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
-	const getLayout =
-		Component.getLayout ?? ((page) => <AppLayout>{page}</AppLayout>);
+  const getLayout =
+    Component.getLayout ?? ((page) => <AppLayout>{page}</AppLayout>);
 
-	return (
-		// <StyledEngineProvider injectFirst>
-		<ThemeProvider theme={lightTheme}>
-			<CssBaseline />
-			<AuthProvider>
-				<ProjectProvider>
-					{!Component.authDisabled ? (
-						<ProtectedRoute>
-							{getLayout(<Component {...pageProps} />)}
-						</ProtectedRoute>
-					) : (
-						<>{getLayout(<Component {...pageProps} />)}</>
-					)}
-				</ProjectProvider>
-			</AuthProvider>
-		</ThemeProvider>
-		// </StyledEngineProvider>
-	);
+  return (
+    // <StyledEngineProvider injectFirst>
+    <ThemeProvider theme={lightTheme}>
+      <CssBaseline />
+      <Head>
+        <title>Jira</title>
+        <meta
+          name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+        />
+      </Head>
+      <AuthProvider>
+        <ProjectProvider>
+          {!Component.authDisabled ? (
+            <ProtectedRoute>
+              {getLayout(<Component {...pageProps} />)}
+            </ProtectedRoute>
+          ) : (
+            <>{getLayout(<Component {...pageProps} />)}</>
+          )}
+        </ProjectProvider>
+      </AuthProvider>
+    </ThemeProvider>
+    // </StyledEngineProvider>
+  );
 };
 
 export default MyApp;
